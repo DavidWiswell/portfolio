@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Featured Concepts</title>
+  <style>
+    :root {
+      --paper: #f7f5f0;
+      --ink: #151515;
+      --muted: #65615b;
+      --line: rgba(21, 21, 21, 0.22);
+      --soft-line: rgba(21, 21, 21, 0.10);
+      --ease: cubic-bezier(.22, 1, .36, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--paper);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    main {
+      width: min(92vw, 940px);
+      margin: 0 auto;
+      padding: clamp(54px, 9vw, 110px) 0 80px;
+    }
+
+    .eyebrow {
+      margin: 0 0 20px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(46px, 8vw, 96px);
+      font-weight: 400;
+      line-height: 0.93;
+      letter-spacing: -0.045em;
+    }
+
+    .intro {
+      max-width: 710px;
+      margin: clamp(34px, 5vw, 58px) 0 clamp(54px, 7vw, 80px);
+      font-size: clamp(18px, 2.2vw, 24px);
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .slate {
+      border-top: 1px solid var(--line);
+    }
+
+    .concept {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .concept-button {
+      appearance: none;
+      width: 100%;
+      border: 0;
+      padding: clamp(24px, 4vw, 38px) 0;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      text-align: left;
+      font: inherit;
+    }
+
+    .concept-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(30px, 4.8vw, 54px);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.035em;
+    }
+
+    .plus {
+      position: relative;
+      width: 28px;
+      height: 28px;
+      flex: none;
+    }
+
+    .plus::before,
+    .plus::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 22px;
+      height: 1px;
+      background: var(--ink);
+      transform: translate(-50%, -50%);
+      transition: transform 420ms var(--ease), opacity 300ms ease;
+    }
+
+    .plus::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    .concept.open .plus::after {
+      transform: translate(-50%, -50%) rotate(0deg);
+      opacity: 0;
+    }
+
+    .concept-panel {
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      transition:
+        grid-template-rows 650ms var(--ease),
+        opacity 350ms ease;
+    }
+
+    .concept.open .concept-panel {
+      grid-template-rows: 1fr;
+      opacity: 1;
+    }
+
+    .concept-panel-inner {
+      overflow: hidden;
+    }
+
+    .concept-copy {
+      max-width: 760px;
+      padding: 0 0 clamp(36px, 5vw, 60px);
+    }
+
+    .tagline {
+      margin: 0 0 24px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(24px, 3.4vw, 38px);
+      line-height: 1.22;
+      letter-spacing: -0.02em;
+      font-style: italic;
+    }
+
+    .logline {
+      margin: 0;
+      font-size: clamp(17px, 2vw, 21px);
+      line-height: 1.68;
+      color: var(--muted);
+    }
+
+    .hint {
+      margin-top: 20px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    @media (max-width: 600px) {
+      main {
+        width: min(88vw, 940px);
+        padding-top: 42px;
+      }
+
+      .intro {
+        margin-bottom: 48px;
+      }
+
+      .concept-button {
+        padding: 24px 0;
+      }
+
+      .plus {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">Interactive Appendix</p>
+    <h1>Featured Concepts</h1>
+
+    <p class="intro">
+      Alongside my featured projects, I continually develop original concepts across film and television.
+      Most begin with a simple ironic premise before expanding into character-driven stories with strong commercial hooks.
+    </p>
+
+    <section class="slate" aria-label="Featured concepts">
+      <article class="concept" id="conspiracy-concept">
+        <button
+          class="concept-button"
+          type="button"
+          aria-expanded="false"
+          aria-controls="conspiracy-panel"
+        >
+          <span class="concept-title">Conspiracy</span>
+          <span class="plus" aria-hidden="true"></span>
+        </button>
+
+        <div class="concept-panel" id="conspiracy-panel">
+          <div class="concept-panel-inner">
+            <div class="concept-copy">
+              <p class="tagline">What if every insane conspiracy theorist was right?</p>
+              <p class="logline">
+                After his revolutionary discovery transforms him from scientific outcast to the world's most celebrated scientist,
+                an uncompromising empiricist uncovers evidence that every absurd conspiracy theory is actually true. Cast out once again,
+                he reluctantly joins forces with the internet's most notorious conspiracy theorist to expose the truth—until one final
+                discovery forces him to dismantle the conspiracy movement he unleashed in a world where he can no longer trust anyone,
+                not even himself.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <p class="hint">Click the title to open and close</p>
+  </main>
+
+  <script>
+    const concept = document.querySelector(".concept");
+    const button = concept.querySelector(".concept-button");
+
+    button.addEventListener("click", () => {
+      const isOpen = concept.classList.toggle("open");
+      button.setAttribute("aria-expanded", String(isOpen));
+    });
+  </script>
+</body>
+</html>
