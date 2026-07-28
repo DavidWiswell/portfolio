@@ -1053,3 +1053,179 @@ footer{
     font-size:clamp(19px,5.8vw,23px);
   }
 }
+
+
+/* =========================================================
+   VERSION 10 — CONTINUITY & PROJECT-PAGE REBUILD
+   ========================================================= */
+
+:root{
+  --site-width:1040px;
+  --reading-width:850px;
+  --copy-width:720px;
+}
+
+/* One site canvas and one left reading edge. */
+.nav,
+main,
+footer{
+  width:min(90vw,var(--site-width));
+}
+.page-home main,
+.concepts-main{
+  width:min(90vw,var(--site-width));
+}
+
+/* Shared header geometry and rhythm. */
+.section-head,
+.project-hero,
+.concepts-masthead,
+.produced-wrap{
+  width:min(100%,var(--reading-width));
+  max-width:var(--reading-width);
+}
+.section-head,
+.concepts-masthead{
+  margin-bottom:clamp(52px,6.5vw,76px);
+}
+.section-head .lede,
+.concepts-masthead .lede,
+.work-summary-lede{
+  max-width:var(--reading-width);
+}
+
+/* Home: keep a narrower composition without moving its left edge. */
+.page-home .hero{
+  max-width:880px;
+  transform:translateY(28px);
+}
+
+/* About and long-form copy remain on the same axis. */
+.about-body-stacked{
+  width:min(100%,740px);
+  max-width:740px;
+  margin-left:0;
+}
+
+/* Featured Projects: same canvas, preserved internal design. */
+.project-index{
+  width:100%;
+  max-width:var(--site-width);
+}
+
+/* Concepts: bring the catalogue back into the publication system. */
+.concepts-main{
+  padding-top:clamp(70px,9vw,120px);
+}
+.concepts-masthead{
+  margin-bottom:clamp(48px,6vw,72px);
+}
+.concepts-masthead .lede{
+  font-size:clamp(18px,2vw,23px);
+  line-height:1.54;
+}
+.genre-name{
+  font-size:clamp(25px,3vw,36px);
+  letter-spacing:-.02em;
+  text-transform:none;
+}
+.genre-meta{
+  margin-top:8px;
+  font-size:10px;
+  letter-spacing:.12em;
+}
+.genre-toggle{
+  padding:clamp(30px,4vw,42px) 0;
+}
+.concept-title{
+  font-size:clamp(26px,3vw,36px);
+}
+.concept-tease{
+  max-width:720px;
+  font-size:clamp(16px,1.75vw,20px);
+}
+.concept-content{
+  max-width:var(--copy-width);
+}
+.concept-logline,
+.concept-quote{
+  font-size:clamp(18px,1.9vw,21px);
+}
+
+/* Individual projects: identity → metadata → premise → support. */
+.project-title{
+  font-size:clamp(48px,7vw,82px);
+}
+.project-meta{
+  margin-top:clamp(30px,3.8vw,42px);
+  gap:10px 24px;
+  color:#969691;
+  font-size:10px;
+  letter-spacing:.12em;
+}
+.project-hero + .pitch-area{
+  margin-top:clamp(30px,4vw,44px);
+}
+.pitch-area{
+  width:min(100%,var(--copy-width));
+  max-width:var(--copy-width);
+  margin-left:0;
+  border-top:0;
+}
+.logline-block{
+  padding:0 0 clamp(48px,5.8vw,66px);
+  border-bottom:1px solid var(--line-strong);
+}
+.pitch-area .logline-large{
+  max-width:var(--copy-width);
+  margin:0;
+  font-size:clamp(25px,2.55vw,29px);
+  line-height:1.5;
+  letter-spacing:-.018em;
+}
+.pitch-area .project-sections,
+.pitch-area .project-sections-stacked{
+  margin:0;
+}
+.pitch-area .project-section{
+  max-width:var(--copy-width);
+  padding:clamp(46px,5vw,60px) 0;
+}
+.pitch-area .project-section p{
+  max-width:var(--copy-width);
+  font-size:clamp(18px,1.6vw,20px);
+  line-height:1.72;
+}
+
+/* Produced Work follows the same reading system. */
+.produced-wrap{
+  max-width:var(--reading-width);
+}
+.work-summary-lede{
+  max-width:800px;
+}
+
+/* Mobile continuity. */
+@media (max-width:900px){
+  .nav,
+  main,
+  footer,
+  .page-home main,
+  .concepts-main{
+    width:min(88vw,var(--site-width));
+  }
+}
+@media (max-width:640px){
+  .page-home .hero{
+    transform:translateY(12px);
+  }
+  .project-title{
+    font-size:clamp(44px,13vw,64px);
+  }
+  .pitch-area .logline-large{
+    font-size:clamp(23px,6.8vw,29px);
+  }
+  .genre-name{
+    font-size:clamp(23px,7vw,30px);
+  }
+}

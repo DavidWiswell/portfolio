@@ -58,3 +58,15 @@ Version 9:
 - Reworked Produced Work to use the same title-and-lede hierarchy as About.
 - Moved Produced Work metadata beneath the main introductory paragraph.
 - Unified the primary editorial axis and vertical rhythm across the site.
+
+Version 10:
+- Standardized the site around one 1040px canvas and one shared left reading edge.
+- Kept the home composition narrow without centering it differently from following pages.
+- Brought Selected Concepts back into the same editorial system.
+- Reduced and de-capitalized Concepts genre headings while preserving accordion behavior.
+- Standardized header, reading, and long-copy widths.
+- Reduced individual project title scale.
+- Strengthened project metadata.
+- Removed the Logline label and converted each logline into the page's editorial lede.
+- Moved project loglines closer to metadata and placed the first divider after the premise.
+- Preserved stacked Tone and Why This Story sections with improved text scale.
