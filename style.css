@@ -811,421 +811,340 @@ footer{
   }
 }
 
-
 /* =========================================================
-   VERSION 8 — FINAL PROPORTION & HIERARCHY PASS
+   RC1 — RESTRAINED MOTION + LOCKED PROJECT COPY
    ========================================================= */
 
-/* 1. Home: stronger title anchor and more deliberate spacing. */
-.page-home .hero h1{
-  font-size:clamp(52px,8.1vw,96px);
+/* Featured project titles no longer carry list numbers. */
+.project-list-number{display:none}
+
+/* Page-entry motion: one quiet, consistent system. */
+body.motion-ready .hero > *,
+body.motion-ready .section-head > *,
+body.motion-ready .project-hero > *,
+body.motion-ready .concepts-masthead > *,
+body.motion-ready .produced-wrap > .eyebrow,
+body.motion-ready .produced-wrap > .work-title,
+body.motion-ready .produced-wrap > .work-meta,
+body.motion-ready .produced-wrap > .work-overview,
+body.motion-ready .produced-wrap > .video-card{
+  opacity:0;
+  transform:translate3d(0,18px,0);
 }
-.page-home .hero .eyebrow{
-  margin-bottom:14px;
+body.motion-ready.is-loaded .hero > *,
+body.motion-ready.is-loaded .section-head > *,
+body.motion-ready.is-loaded .project-hero > *,
+body.motion-ready.is-loaded .concepts-masthead > *,
+body.motion-ready.is-loaded .produced-wrap > .eyebrow,
+body.motion-ready.is-loaded .produced-wrap > .work-title,
+body.motion-ready.is-loaded .produced-wrap > .work-meta,
+body.motion-ready.is-loaded .produced-wrap > .work-overview,
+body.motion-ready.is-loaded .produced-wrap > .video-card{
+  opacity:1;
+  transform:none;
+  transition:opacity 560ms ease,transform 620ms cubic-bezier(.22,.61,.36,1);
 }
-.page-home .hero-links{
-  margin-top:clamp(46px,5.5vw,66px);
+body.motion-ready.is-loaded .hero > *:nth-child(2),
+body.motion-ready.is-loaded .section-head > *:nth-child(2),
+body.motion-ready.is-loaded .project-hero > *:nth-child(2),
+body.motion-ready.is-loaded .concepts-masthead > *:nth-child(2){transition-delay:55ms}
+body.motion-ready.is-loaded .hero > *:nth-child(3),
+body.motion-ready.is-loaded .section-head > *:nth-child(3),
+body.motion-ready.is-loaded .project-hero > *:nth-child(3),
+body.motion-ready.is-loaded .concepts-masthead > *:nth-child(3){transition-delay:105ms}
+
+/* Individual project pages: larger clean title, no blur, no bounce. */
+.page-project .project-title{font-size:clamp(56px,8.4vw,102px)}
+body.page-project.motion-ready .project-title{filter:none}
+
+/* The pitch divider draws just after the logline arrives. */
+.page-project .pitch-area{border-top:0}
+.page-project .logline-block{position:relative;border-bottom:0}
+.page-project .logline-block::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:1px;
+  background:var(--line-strong);
+  transform:scaleX(0);
+  transform-origin:left center;
+}
+body.motion-ready .pitch-area{opacity:0;transform:translate3d(0,14px,0)}
+body.motion-ready.is-loaded .pitch-area{
+  opacity:1;
+  transform:none;
+  transition:opacity 520ms ease 150ms,transform 600ms cubic-bezier(.22,.61,.36,1) 150ms;
+}
+body.motion-ready.is-loaded .logline-block::after{
+  transform:scaleX(1);
+  transition:transform 620ms cubic-bezier(.22,.61,.36,1) 410ms;
 }
 
-/* 2. About: tighter stacked sections, slightly more centered editorial balance. */
-.about-body-stacked{
-  max-width:740px;
-  margin-left:clamp(42px,5.5vw,78px);
+/* Selected Concepts and Produced Work finish crisply—no blur or snap-back. */
+.concepts-title,.work-title{filter:none}
+
+/* Restore the delayed, restrained View Project invitation. */
+.project-row-action{position:relative}
+.project-row-action::before{
+  content:"";
+  position:absolute;
+  inset:-10px -12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.075);
+  opacity:0;
+  transform:scale(.96);
+  pointer-events:none;
 }
-.about-body-stacked .about-section{
-  padding:clamp(40px,4.8vw,54px) 0;
-}
-.about-body-stacked .copy-label{
-  margin-bottom:12px;
-}
-.about-body-stacked .copy{
-  max-width:660px;
+body.motion-ready.is-loaded .project-row:nth-child(2) .project-row-action::before{animation:projectInvite 1150ms ease 850ms 1}
+body.motion-ready.is-loaded .project-row:nth-child(3) .project-row-action::before{animation:projectInvite 1150ms ease 1010ms 1}
+body.motion-ready.is-loaded .project-row:nth-child(4) .project-row-action::before{animation:projectInvite 1150ms ease 1170ms 1}
+@keyframes projectInvite{
+  0%,100%{opacity:0;transform:scale(.96)}
+  42%{opacity:1;transform:scale(1)}
+  70%{opacity:.32;transform:scale(1.015)}
 }
 
-/* 3. Featured Projects: cleaner entrance and slightly more air in each row. */
-.section-head + .project-index{
-  margin-top:clamp(54px,6.5vw,78px);
+/* Row entrances stay calm and finish without overshoot. */
+body.motion-ready .project-row{opacity:0;transform:translate3d(-14px,0,0)}
+body.motion-ready.is-loaded .project-row{
+  opacity:1;
+  transform:none;
+  transition:opacity 520ms ease,transform 600ms cubic-bezier(.22,.61,.36,1),color 180ms ease;
 }
-.project-row{
-  padding-top:clamp(46px,5.4vw,60px);
-  padding-bottom:clamp(46px,5.4vw,60px);
-}
-/* Intentionally preserve existing View Project treatment. */
+body.motion-ready.is-loaded .project-row:nth-child(2){transition-delay:120ms}
+body.motion-ready.is-loaded .project-row:nth-child(3){transition-delay:185ms}
+body.motion-ready.is-loaded .project-row:nth-child(4){transition-delay:250ms}
+body.motion-ready.is-loaded .project-row:hover{transform:translateX(4px)}
 
-/* 4. Project pages: quieter metadata and tighter transition into the pitch. */
-.project-meta{
-  font-size:9px;
-  letter-spacing:.115em;
-  color:#7f7f7b;
-}
-.project-hero + .pitch-area{
-  margin-top:clamp(54px,6.5vw,78px);
-}
-
-/* 5. Produced Work: quieter metadata, stronger main body paragraph. */
-.work-meta{
-  font-size:8.5px;
-  letter-spacing:.12em;
-  color:#777773;
-}
-.work-summary{
-  font-size:clamp(18px,1.65vw,20.7px);
-  line-height:1.72;
-  max-width:760px;
-}
-
-/* 6. Continue-reading treatment: editorial rather than templated. */
-.next-project span{
-  letter-spacing:.13em;
-}
-
-/* 7. Page-by-page width rhythm. */
-.page-home main{
-  width:min(82vw,880px);
-}
-.about-body-stacked{
-  width:min(100%,740px);
-}
-.project-index{
-  width:min(100%,1040px);
-}
-.pitch-area{
-  width:min(100%,780px);
-}
-.produced-wrap{
-  max-width:880px;
-}
-.contact-page{
-  max-width:760px;
-}
-.concepts-main{
-  width:min(90vw,1100px);
-}
-
-/* Header: slightly tighter relationship between brand and navigation. */
-.nav{
-  gap:20px;
-}
-
-@media (max-width:900px){
-  .about-body-stacked{
-    margin-left:0;
+@media (prefers-reduced-motion:reduce){
+  body.motion-ready *,body.motion-ready *::before,body.motion-ready *::after{
+    animation:none!important;
+    transition:none!important;
+    transform:none!important;
+    opacity:1!important;
   }
-  .page-home main{
-    width:min(88vw,880px);
-  }
 }
-
-@media (max-width:640px){
-  .page-home .hero h1{
-    font-size:clamp(48px,14vw,68px);
-  }
-  .about-body-stacked{
-    width:100%;
-  }
-  .work-summary{
-    font-size:18px;
-  }
-}
-
 
 /* =========================================================
-   VERSION 9 — UNIFIED EDITORIAL AXIS
+   RC2 — ABOUT-LED EDITORIAL PROJECT SYSTEM
    ========================================================= */
 
-.section-head,
-.project-hero,
-.produced-wrap{
-  max-width:880px;
-}
-.section-head .lede,
-.work-summary-lede{
-  margin-top:clamp(30px,4vw,42px);
+/* Individual projects now follow the quiet, readable rhythm of About. */
+.page-project .project-hero,
+.page-produced .produced-wrap{
+  max-width:920px;
 }
 
-/* Home */
-.page-home .hero{
-  transform:translateY(28px);
+.page-project .project-title,
+.page-produced .project-title{
+  font-size:clamp(50px,7.4vw,90px);
+  line-height:.98;
+  letter-spacing:-.045em;
 }
 
-/* About */
-.about-body-stacked{
-  width:min(100%,740px);
-  max-width:740px;
-  margin-left:0;
-  margin-top:clamp(62px,7vw,86px);
-}
-.about-body-stacked .about-section{
-  display:block;
-  padding:clamp(40px,4.8vw,54px) 0;
-}
-.about-body-stacked .copy-label{
-  margin:0 0 11px;
-}
-.about-body-stacked .copy{
-  max-width:660px;
+.page-project .project-meta,
+.page-produced .project-meta{
+  width:min(100%,760px);
+  margin-top:clamp(22px,2.8vw,30px);
+  padding-bottom:clamp(18px,2.4vw,25px);
+  border-bottom:1px solid var(--line-strong);
+  gap:8px 20px;
+  color:#858581;
 }
 
-/* Featured Projects intentionally unchanged. */
+.project-editorial-body{
+  width:min(100%,760px);
+  margin-top:clamp(42px,5.5vw,64px);
+  margin-left:clamp(22px,3.5vw,54px);
+}
 
-/* Individual project pages */
-.pitch-area{
-  width:min(100%,780px);
-  max-width:780px;
-  margin-left:0;
-  border-top:0;
+.project-editorial-logline{
+  padding:0 0 clamp(54px,6.5vw,76px);
 }
-.project-hero + .pitch-area{
-  margin-top:clamp(44px,5.5vw,64px);
+
+.project-logline{
+  max-width:720px;
+  margin:0;
+  color:var(--text);
+  font-family:Georgia,"Times New Roman",Times,serif;
+  font-size:clamp(22px,2.65vw,31px);
+  line-height:1.54;
+  letter-spacing:-.017em;
 }
-.logline-block{
-  padding:0 0 clamp(48px,5.8vw,66px);
+
+.project-editorial-section{
+  max-width:720px;
+  padding:clamp(48px,5.5vw,64px) 0;
+  border-top:1px solid var(--line);
+}
+
+.project-editorial-section:last-child{
   border-bottom:1px solid var(--line);
 }
-.pitch-label{
-  margin:0 0 18px;
-}
-.pitch-area .logline-large{
-  max-width:760px;
-  font-size:clamp(21px,2.05vw,25px);
-  line-height:1.58;
-  letter-spacing:-.012em;
-}
-.pitch-area .project-sections,
-.pitch-area .project-sections-stacked{
-  display:block;
-  margin:0;
-}
-.pitch-area .project-section{
-  max-width:760px;
-  padding:clamp(44px,5vw,58px) 0;
-}
-.pitch-area .project-section p{
-  max-width:720px;
-  font-size:clamp(18px,1.6vw,20px);
-  line-height:1.72;
-}
-.pitch-area .project-section + .project-section{
-  padding-left:0;
-  border-left:0;
+
+.project-editorial-section .copy-label{
+  margin:0 0 15px;
 }
 
-/* Produced Work */
-.produced-wrap{
-  max-width:880px;
+.project-editorial-section .copy{
+  max-width:690px;
+  font-size:clamp(17px,1.8vw,21px);
+  line-height:1.72;
 }
-.work-summary-lede{
-  max-width:800px;
-  margin-bottom:0;
-  color:var(--soft);
-  font-family:Georgia,"Times New Roman",Times,serif;
-  font-size:clamp(19px,2.2vw,26px);
-  line-height:1.5;
-  letter-spacing:-.013em;
+
+/* Produced Work uses the same title / metadata / lead / final-section grammar. */
+.page-produced .produced-wrap > .project-editorial-body{
+  margin-top:clamp(42px,5.5vw,64px);
 }
-.work-meta{
-  margin-top:clamp(30px,3.8vw,42px);
-  font-size:8.5px;
-  letter-spacing:.12em;
-  color:#777773;
+
+.produced-watch-section .video-card{
+  margin-top:0;
+  padding:10px 0 6px;
+  border:0;
 }
-.produced-wrap .video-card{
-  margin-top:clamp(54px,6.5vw,76px);
+
+.produced-watch-section .video-card strong{
+  font-size:clamp(24px,3vw,34px);
+}
+
+/* Remove RC1's divider choreography—the metadata rule now does that work. */
+.page-project .logline-block::after{display:none}
+body.motion-ready .pitch-area,
+body.motion-ready.is-loaded .pitch-area{opacity:1;transform:none;transition:none}
+
+/* Calm About-style entry motion for the new project body. */
+body.motion-ready .project-editorial-body > *{
+  opacity:0;
+  transform:translate3d(0,14px,0);
+}
+body.motion-ready.is-loaded .project-editorial-body > *{
+  opacity:1;
+  transform:none;
+  transition:opacity 520ms ease,transform 600ms cubic-bezier(.22,.61,.36,1);
+}
+body.motion-ready.is-loaded .project-editorial-body > *:nth-child(1){transition-delay:120ms}
+body.motion-ready.is-loaded .project-editorial-body > *:nth-child(2){transition-delay:180ms}
+body.motion-ready.is-loaded .project-editorial-body > *:nth-child(3){transition-delay:240ms}
+
+/* Featured Projects: persistent glow belongs to the words—not a floating bubble. */
+.project-row-action::before{content:none!important;display:none!important;animation:none!important}
+.project-row-action > span:first-child{
+  color:#aaa9a4;
+  text-shadow:0 0 8px rgba(255,255,255,.18),0 0 18px rgba(255,255,255,.08);
+  transition:color 180ms ease,text-shadow 180ms ease;
+}
+.project-row:hover .project-row-action > span:first-child,
+.project-row:focus-visible .project-row-action > span:first-child{
+  color:#d0cfca;
+  text-shadow:0 0 9px rgba(255,255,255,.28),0 0 22px rgba(255,255,255,.12);
 }
 
 @media (max-width:900px){
-  .about-body-stacked,
-  .pitch-area{
-    margin-left:0;
-  }
-}
-@media (max-width:640px){
-  .page-home .hero{
-    transform:translateY(12px);
-  }
-  .pitch-area .logline-large{
-    font-size:clamp(21px,6.3vw,28px);
-  }
-  .pitch-area .project-section p{
-    font-size:18px;
-  }
-  .work-summary-lede{
-    font-size:clamp(19px,5.8vw,23px);
-  }
+  .project-editorial-body{margin-left:0}
 }
 
+@media (max-width:640px){
+  .page-project .project-title,
+  .page-produced .project-title{font-size:clamp(44px,13vw,66px)}
+  .project-editorial-body{margin-top:38px}
+  .project-logline{font-size:clamp(20px,5.8vw,26px);line-height:1.6}
+}
 
 /* =========================================================
-   VERSION 10 — CONTINUITY & PROJECT-PAGE REBUILD
+   RC3 — PROJECTS USE THE ABOUT PAGE'S EXACT READING FLOW
    ========================================================= */
 
-:root{
-  --site-width:1040px;
-  --reading-width:850px;
-  --copy-width:720px;
+/* Project loglines now inherit the About page's lede typography,
+   measure, spacing, and margins without a parallel pitch system. */
+.project-about-head{
+  max-width:850px;
 }
-
-/* One site canvas and one left reading edge. */
-.nav,
-main,
-footer{
-  width:min(90vw,var(--site-width));
-}
-.page-home main,
-.concepts-main{
-  width:min(90vw,var(--site-width));
-}
-
-/* Shared header geometry and rhythm. */
-.section-head,
-.project-hero,
-.concepts-masthead,
-.produced-wrap{
-  width:min(100%,var(--reading-width));
-  max-width:var(--reading-width);
-}
-.section-head,
-.concepts-masthead{
-  margin-bottom:clamp(52px,6.5vw,76px);
-}
-.section-head .lede,
-.concepts-masthead .lede,
-.work-summary-lede{
-  max-width:var(--reading-width);
-}
-
-/* Home: keep a narrower composition without moving its left edge. */
-.page-home .hero{
-  max-width:880px;
-  transform:translateY(28px);
-}
-
-/* About and long-form copy remain on the same axis. */
-.about-body-stacked{
-  width:min(100%,740px);
-  max-width:740px;
-  margin-left:0;
-}
-
-/* Featured Projects: same canvas, preserved internal design. */
-.project-index{
-  width:100%;
-  max-width:var(--site-width);
-}
-
-/* Concepts: bring the catalogue back into the publication system. */
-.concepts-main{
-  padding-top:clamp(70px,9vw,120px);
-}
-.concepts-masthead{
-  margin-bottom:clamp(48px,6vw,72px);
-}
-.concepts-masthead .lede{
-  font-size:clamp(18px,2vw,23px);
-  line-height:1.54;
-}
-.genre-name{
-  font-size:clamp(25px,3vw,36px);
-  letter-spacing:-.02em;
-  text-transform:none;
-}
-.genre-meta{
-  margin-top:8px;
-  font-size:10px;
-  letter-spacing:.12em;
-}
-.genre-toggle{
-  padding:clamp(30px,4vw,42px) 0;
-}
-.concept-title{
-  font-size:clamp(26px,3vw,36px);
-}
-.concept-tease{
-  max-width:720px;
-  font-size:clamp(16px,1.75vw,20px);
-}
-.concept-content{
-  max-width:var(--copy-width);
-}
-.concept-logline,
-.concept-quote{
-  font-size:clamp(18px,1.9vw,21px);
-}
-
-/* Individual projects: identity → metadata → premise → support. */
-.project-title{
-  font-size:clamp(48px,7vw,82px);
-}
-.project-meta{
-  margin-top:clamp(30px,3.8vw,42px);
-  gap:10px 24px;
-  color:#969691;
-  font-size:10px;
-  letter-spacing:.12em;
-}
-.project-hero + .pitch-area{
-  margin-top:clamp(30px,4vw,44px);
-}
-.pitch-area{
-  width:min(100%,var(--copy-width));
-  max-width:var(--copy-width);
-  margin-left:0;
-  border-top:0;
-}
-.logline-block{
-  padding:0 0 clamp(48px,5.8vw,66px);
+.project-about-head .project-meta{
+  width:min(100%,760px);
+  margin-top:clamp(16px,2vw,22px);
+  padding-bottom:clamp(15px,1.8vw,20px);
   border-bottom:1px solid var(--line-strong);
 }
-.pitch-area .logline-large{
-  max-width:var(--copy-width);
-  margin:0;
-  font-size:clamp(25px,2.55vw,29px);
-  line-height:1.5;
-  letter-spacing:-.018em;
-}
-.pitch-area .project-sections,
-.pitch-area .project-sections-stacked{
-  margin:0;
-}
-.pitch-area .project-section{
-  max-width:var(--copy-width);
-  padding:clamp(46px,5vw,60px) 0;
-}
-.pitch-area .project-section p{
-  max-width:var(--copy-width);
-  font-size:clamp(18px,1.6vw,20px);
-  line-height:1.72;
+.project-about-head .project-lede{
+  max-width:850px;
 }
 
-/* Produced Work follows the same reading system. */
-.produced-wrap{
-  max-width:var(--reading-width);
+/* Tone / Why You'll Be Hooked and Produced Work now literally use
+   the same section model as Background / Creative Focus on About. */
+.project-about-body{
+  max-width:760px;
 }
-.work-summary-lede{
-  max-width:800px;
+.project-about-body .about-section{
+  display:block;
+  padding:clamp(46px,5.5vw,62px) 0;
+}
+.project-about-body .copy-label{
+  margin:0 0 15px;
+}
+.project-about-body .copy{
+  max-width:690px;
 }
 
-/* Mobile continuity. */
+/* Produced Work follows the same title → metadata → lead → section flow. */
+.produced-about-body .video-card{
+  margin-top:0;
+  padding:8px 0 4px;
+  border:0;
+}
+.produced-about-body .video-card strong{
+  font-size:clamp(24px,3vw,34px);
+}
+
+/* Retire the previous project-specific editorial body layout. */
+.project-editorial-body,
+.project-editorial-logline,
+.project-editorial-section{
+  all:unset;
+}
+
+/* Featured Projects: an overt delayed glow on the words themselves.
+   It begins after each row's entrance and stays visibly illuminated. */
+.project-row-action::before{display:none!important;content:none!important}
+.project-row-action > span:first-child{
+  color:#aaa9a4;
+  text-shadow:none;
+  will-change:color,text-shadow,filter;
+}
+body.motion-ready.is-loaded .project-row:nth-child(2) .project-row-action > span:first-child{
+  animation:viewProjectGlow 1000ms ease 760ms forwards;
+}
+body.motion-ready.is-loaded .project-row:nth-child(3) .project-row-action > span:first-child{
+  animation:viewProjectGlow 1000ms ease 920ms forwards;
+}
+body.motion-ready.is-loaded .project-row:nth-child(4) .project-row-action > span:first-child{
+  animation:viewProjectGlow 1000ms ease 1080ms forwards;
+}
+@keyframes viewProjectGlow{
+  0%{
+    color:#aaa9a4;
+    text-shadow:none;
+    filter:brightness(1);
+  }
+  52%{
+    color:#fff;
+    text-shadow:0 0 5px rgba(255,255,255,.98),0 0 14px rgba(255,255,255,.82),0 0 30px rgba(255,255,255,.52);
+    filter:brightness(1.45);
+  }
+  100%{
+    color:#f5f5f1;
+    text-shadow:0 0 7px rgba(255,255,255,.78),0 0 18px rgba(255,255,255,.48),0 0 36px rgba(255,255,255,.24);
+    filter:brightness(1.18);
+  }
+}
+.project-row:hover .project-row-action > span:first-child,
+.project-row:focus-visible .project-row-action > span:first-child{
+  color:#fff;
+  text-shadow:0 0 7px rgba(255,255,255,1),0 0 18px rgba(255,255,255,.75),0 0 38px rgba(255,255,255,.38);
+  filter:brightness(1.35);
+}
+
 @media (max-width:900px){
-  .nav,
-  main,
-  footer,
-  .page-home main,
-  .concepts-main{
-    width:min(88vw,var(--site-width));
-  }
-}
-@media (max-width:640px){
-  .page-home .hero{
-    transform:translateY(12px);
-  }
-  .project-title{
-    font-size:clamp(44px,13vw,64px);
-  }
-  .pitch-area .logline-large{
-    font-size:clamp(23px,6.8vw,29px);
-  }
-  .genre-name{
-    font-size:clamp(23px,7vw,30px);
-  }
+  .project-about-body{margin-left:0}
 }

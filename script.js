@@ -26,3 +26,7 @@ document.querySelectorAll('.concept-toggle').forEach(button => {
     button.setAttribute('aria-expanded', String(open));
   });
 });
+
+// RC1: enable motion only after CSS is available, then settle once—no snap-back.
+document.body.classList.add('motion-ready');
+requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add('is-loaded')));
