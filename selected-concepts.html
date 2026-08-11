@@ -1,30 +1,133 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Selected projects by writer and creator David Wiswell.">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Selected projects by writer and creator David Wiswell." name="description"/>
 <title>Selected Concepts — David Wiswell</title>
-<link rel="stylesheet" href="style.css">
-</head>
+<link href="style.css" rel="stylesheet"/>
+<style id="selected-concepts-hierarchy-pass">
+/* =========================================================
+   SELECTED CONCEPTS — HIERARCHY PASS
+   One click opens a genre; all projects inside are immediately visible.
+   Page-local so RC3's shared style.css stays untouched.
+   ========================================================= */
+
+.page-concepts .genre-button{
+  appearance:none;
+  width:100%;
+  border:0;
+  background:transparent;
+  color:inherit;
+  cursor:pointer;
+  text-align:left;
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:24px;
+  padding:clamp(30px,4.6vw,46px) 0;
+}
+.page-concepts .genre-button:focus-visible{
+  outline:1px solid var(--line-strong);
+  outline-offset:8px;
+}
+.page-concepts .genre.open > .genre-button .plus:after{
+  transform:translate(-50%,-50%) rotate(0);
+  opacity:0;
+}
+
+/* Projects read clearly as children of the open genre. */
+.page-concepts .genre-panel .concept-list{
+  margin-left:clamp(14px,2.2vw,26px);
+  padding:0 0 clamp(24px,3.5vw,38px) clamp(18px,2.8vw,34px);
+  border-left:1px solid rgba(255,255,255,.14);
+}
+.page-concepts .concept{
+  border-top:1px solid var(--line);
+  padding:clamp(24px,3.2vw,32px) 0 clamp(30px,4vw,42px);
+}
+.page-concepts .concept:first-child{
+  border-top-color:var(--line-strong);
+}
+.page-concepts .concept-heading-static{
+  display:block;
+  max-width:820px;
+}
+.page-concepts .concept-title{
+  font-size:clamp(25px,3.05vw,36px);
+  line-height:1.05;
+}
+.page-concepts .concept-tease{
+  max-width:760px;
+  margin-top:8px;
+}
+.page-concepts .concept-content{
+  max-width:800px;
+  padding:0;
+}
+.page-concepts .concept-divider{
+  width:min(100%,160px);
+  margin:20px 0;
+  opacity:.56;
+  transition:none;
+}
+.page-concepts .concept-logline,
+.page-concepts .concept-quote{
+  opacity:1;
+  transform:none;
+  transition:none;
+}
+.page-concepts .concept-logline{
+  max-width:760px;
+}
+.page-concepts .concept-quote{
+  max-width:720px;
+}
+
+/* Quiet emphasis on whichever category is active. */
+.page-concepts .genre.open > .genre-button .genre-name{
+  color:#fff;
+}
+.page-concepts .genre:not(.open) > .genre-button .genre-name{
+  color:var(--text);
+  transition:color 180ms ease;
+}
+.page-concepts .genre-button:hover .genre-name{
+  color:#fff;
+}
+
+@media(max-width:600px){
+  .page-concepts .genre-panel .concept-list{
+    margin-left:7px;
+    padding-left:14px;
+  }
+  .page-concepts .concept{
+    padding-top:22px;
+    padding-bottom:30px;
+  }
+  .page-concepts .concept-divider{
+    margin:18px 0;
+    width:min(100%,110px);
+  }
+}
+</style></head>
 <body class="page-concepts">
 <header class="site-header">
-  <nav class="nav" aria-label="Primary navigation">
-    <a class="brand" href="index.html">David Wiswell</a>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Open menu">Menu</button>
-    <div class="nav-links"><a class="" href="index.html">Home</a><a class="" href="about.html">About</a><a class="" href="projects.html">Projects</a><a class="active" href="selected-concepts.html">Concepts</a><a class="" href="produced-work.html">Produced Work</a><a class="" href="contact.html">Contact</a></div>
-  </nav>
+<nav aria-label="Primary navigation" class="nav">
+<a class="brand" href="index.html">David Wiswell</a>
+<button aria-expanded="false" aria-label="Open menu" class="menu-toggle" type="button">Menu</button>
+<div class="nav-links"><a class="" href="index.html">Home</a><a class="" href="about.html">About</a><a class="" href="projects.html">Projects</a><a class="active" href="selected-concepts.html">Concepts</a><a class="" href="produced-work.html">Produced Work</a><a class="" href="contact.html">Contact</a></div>
+</nav>
 </header>
-
 <main class="concepts-main">
-  <header class="concepts-masthead">
-    <p class="eyebrow">Expanded Slate</p>
-    <h1 class="concepts-title">Selected Concepts</h1>
-    <p class="lede">Alongside my featured projects, I continually develop original concepts across film and television. Most begin with a simple ironic premise before expanding into character-driven stories with strong commercial hooks.</p>
-  </header>
-  <section class="genre-list" aria-label="Selected concepts by genre">
-    <article class="genre">
-<button aria-expanded="false" class="genre-toggle" type="button">
+<header class="concepts-masthead">
+<p class="eyebrow">Expanded Slate</p>
+<h1 class="concepts-title">Selected Concepts</h1>
+<p class="lede">Alongside my featured projects, I continually develop original concepts across film and television. Most begin with a simple ironic premise before expanding into character-driven stories with strong commercial hooks.</p>
+</header>
+<section aria-label="Selected concepts by genre" class="genre-list">
+<article class="genre">
+<button aria-expanded="false" class="genre-button" type="button">
 <span>
 <span class="genre-name">Satire Features</span>
 <span class="genre-meta">3 concepts</span>
@@ -33,55 +136,31 @@
 </button>
 <div class="genre-panel"><div class="panel-inner">
 <div class="concept-list">
-<article class="concept">
-<button aria-expanded="false" class="concept-toggle" type="button">
-<span class="concept-heading">
+<article class="concept"><div class="concept-static"><div class="concept-heading-static">
 <span class="concept-title">Conspiracy</span>
 <span class="concept-tease">What if every insane conspiracy theorist was right?</span>
-</span>
-<span aria-hidden="true" class="plus"></span>
-</button>
-<div class="concept-panel"><div class="panel-inner">
-<div class="concept-content">
+</div><div class="concept-content">
 <div class="concept-divider"></div>
 <p class="concept-logline">After his revolutionary discovery transforms him from scientific outcast to the world's most celebrated scientist, an uncompromising empiricist uncovers evidence that every absurd conspiracy theory is actually true. Cast out once again, he reluctantly joins forces with the internet's most notorious conspiracy theorist to expose the truth—until one final discovery forces him to dismantle the conspiracy movement he unleashed in a world where he can no longer trust anyone, not even himself.</p>
-</div>
-</div></div>
-</article>
-<article class="concept">
-<button aria-expanded="false" class="concept-toggle" type="button">
-<span class="concept-heading">
+</div></div></article>
+<article class="concept"><div class="concept-static"><div class="concept-heading-static">
 <span class="concept-title">Armchair President</span>
 <span class="concept-tease">The loudest critic suddenly has to be president.</span>
-</span>
-<span aria-hidden="true" class="plus"></span>
-</button>
-<div class="concept-panel"><div class="panel-inner">
-<div class="concept-content">
+</div><div class="concept-content">
 <div class="concept-divider"></div>
 <p class="concept-logline">After his mega-viral election-night video destroys both major presidential candidates, a know-it-all political YouTuber is elected President in an unprecedented write-in campaign. Now he must discover that running the country is a lot harder than running his mouth—before he destroys it.</p>
-</div>
-</div></div>
-</article>
-<article class="concept">
-<button aria-expanded="false" class="concept-toggle" type="button">
-<span class="concept-heading">
+</div></div></article>
+<article class="concept"><div class="concept-static"><div class="concept-heading-static">
 <span class="concept-title">The Petty Brothers</span>
 <span class="concept-tease">PR gurus take on people’s petty grievances.</span>
-</span>
-<span aria-hidden="true" class="plus"></span>
-</button>
-<div class="concept-panel"><div class="panel-inner">
-<div class="concept-content">
+</div><div class="concept-content">
 <div class="concept-divider"></div>
 <p class="concept-logline">After rising young rivals use their own PR playbook to destroy their reputations, two legendary, yet immature, PR fixers are forced to reinvent themselves by launching the world's first micro-PR app, using elite crisis-management tactics to solve the hilariously petty personal scandals of ordinary people while clawing their way back to the top of the industry.</p>
-</div>
-</div></div>
-</article>
+</div></div></article>
 </div>
 </div></div>
 </article><article class="genre">
-<button aria-expanded="false" class="genre-toggle" type="button">
+<button aria-expanded="false" class="genre-button" type="button">
 <span>
 <span class="genre-name">Superhero Comedy Features</span>
 <span class="genre-meta">2 concepts</span>
@@ -90,40 +169,24 @@
 </button>
 <div class="genre-panel"><div class="panel-inner">
 <div class="concept-list">
-<article class="concept">
-<button aria-expanded="false" class="concept-toggle" type="button">
-<span class="concept-heading">
+<article class="concept"><div class="concept-static"><div class="concept-heading-static">
 <span class="concept-title">Super Ego</span>
 <span class="concept-tease">When a pretender has to become the real thing.</span>
-</span>
-<span aria-hidden="true" class="plus"></span>
-</button>
-<div class="concept-panel"><div class="panel-inner">
-<div class="concept-content">
+</div><div class="concept-content">
 <div class="concept-divider"></div>
 <p class="concept-logline">After the world's most narcissistic superhero star gains actual superpowers, he must become the hero he's always pretended to be when the director whose career he destroyed gains godlike abilities and becomes convinced the only way to save humanity is to destroy the society that rewards monsters.</p>
-</div>
-</div></div>
-</article>
-<article class="concept">
-<button aria-expanded="false" class="concept-toggle" type="button">
-<span class="concept-heading">
+</div></div></article>
+<article class="concept"><div class="concept-static"><div class="concept-heading-static">
 <span class="concept-title">Super Down</span>
 <span class="concept-tease">The world’s greatest hero has lost the will to save it.</span>
-</span>
-<span aria-hidden="true" class="plus"></span>
-</button>
-<div class="concept-panel"><div class="panel-inner">
-<div class="concept-content">
+</div><div class="concept-content">
 <div class="concept-divider"></div>
 <p class="concept-logline">After learning the devastating truth about his own origin leaves him crippled by depression, the world's greatest superhero must find the strength to fight when every supervillain he ever defeated escapes at once and threatens to destroy the world.</p>
-</div>
-</div></div>
-</article>
+</div></div></article>
 </div>
 </div></div>
 </article><article class="genre">
-<button aria-expanded="false" class="genre-toggle" type="button">
+<button aria-expanded="false" class="genre-button" type="button">
 <span>
 <span class="genre-name">Animated Features</span>
 <span class="genre-meta">2 concepts</span>
@@ -132,40 +195,24 @@
 </button>
 <div class="genre-panel"><div class="panel-inner">
 <div class="concept-list">
-<article class="concept">
-<button aria-expanded="false" class="concept-toggle" type="button">
-<span class="concept-heading">
+<article class="concept"><div class="concept-static"><div class="concept-heading-static">
 <span class="concept-title">Rebel Without a Santa Claus</span>
 <span class="concept-tease">Disillusionment is part of growing up.</span>
-</span>
-<span aria-hidden="true" class="plus"></span>
-</button>
-<div class="concept-panel"><div class="panel-inner">
-<div class="concept-content">
+</div><div class="concept-content">
 <div class="concept-divider"></div>
 <p class="concept-logline">After a viral moment turns a shy orphan into an overnight child star, he discovers that Santa Claus isn't real while filming a Christmas movie, sending him on a mission to reveal the truth to every child on Earth—until he uncovers an even greater secret: the real Santa has been kidnapped by the very forces manipulating him to replace the world's wonder with consumerism.</p>
-</div>
-</div></div>
-</article>
-<article class="concept">
-<button aria-expanded="false" class="concept-toggle" type="button">
-<span class="concept-heading">
+</div></div></article>
+<article class="concept"><div class="concept-static"><div class="concept-heading-static">
 <span class="concept-title">Stay</span>
 <span class="concept-tease">To save another you must first save yourself.</span>
-</span>
-<span aria-hidden="true" class="plus"></span>
-</button>
-<div class="concept-panel"><div class="panel-inner">
-<div class="concept-content">
+</div><div class="concept-content">
 <div class="concept-divider"></div>
 <p class="concept-logline">After becoming separated from his seven-year-old autistic owner during a trip for experimental treatment, a devoted emotional support dog is captured by the abusive family he escaped years earlier and must find his way back to save the only person he's ever truly loved before she’s lost forever in a strange city.</p>
-</div>
-</div></div>
-</article>
+</div></div></article>
 </div>
 </div></div>
 </article><article class="genre">
-<button aria-expanded="false" class="genre-toggle" type="button">
+<button aria-expanded="false" class="genre-button" type="button">
 <span>
 <span class="genre-name">Dramedy Features</span>
 <span class="genre-meta">2 concepts</span>
@@ -174,40 +221,24 @@
 </button>
 <div class="genre-panel"><div class="panel-inner">
 <div class="concept-list">
-<article class="concept">
-<button aria-expanded="false" class="concept-toggle" type="button">
-<span class="concept-heading">
+<article class="concept"><div class="concept-static"><div class="concept-heading-static">
 <span class="concept-title">Life Writes</span>
 <span class="concept-tease">The people he betrayed now own his future.</span>
-</span>
-<span aria-hidden="true" class="plus"></span>
-</button>
-<div class="concept-panel"><div class="panel-inner">
-<div class="concept-content">
+</div><div class="concept-content">
 <div class="concept-divider"></div>
 <p class="concept-logline">After becoming a literary superstar by exploiting the darkest secrets of his friends and family, a shameless writer must somehow convince the people who hate him most to sign away their life rights before a massive class-action lawsuit costs him everything.</p>
-</div>
-</div></div>
-</article>
-<article class="concept">
-<button aria-expanded="false" class="concept-toggle" type="button">
-<span class="concept-heading">
+</div></div></article>
+<article class="concept"><div class="concept-static"><div class="concept-heading-static">
 <span class="concept-title">Seize the Day</span>
 <span class="concept-tease">He has one month left to settle the score.</span>
-</span>
-<span aria-hidden="true" class="plus"></span>
-</button>
-<div class="concept-panel"><div class="panel-inner">
-<div class="concept-content">
+</div><div class="concept-content">
 <div class="concept-divider"></div>
 <p class="concept-logline">After a terminal cancer diagnosis gives him one month to live, a bitter kindergarten teacher decides there's one more thing he must do before dying—get revenge on his estranged backstabbing brother who ruined his life—only to discover dying is easier than letting go.</p>
-</div>
-</div></div>
-</article>
+</div></div></article>
 </div>
 </div></div>
 </article><article class="genre">
-<button aria-expanded="false" class="genre-toggle" type="button">
+<button aria-expanded="false" class="genre-button" type="button">
 <span>
 <span class="genre-name">Historical Biopic Features</span>
 <span class="genre-meta">2 concepts</span>
@@ -216,40 +247,24 @@
 </button>
 <div class="genre-panel"><div class="panel-inner">
 <div class="concept-list">
-<article class="concept">
-<button aria-expanded="false" class="concept-toggle" type="button">
-<span class="concept-heading">
+<article class="concept"><div class="concept-static"><div class="concept-heading-static">
 <span class="concept-title">Paine</span>
 <span class="concept-tease">The father of modern democracy died forgotten.</span>
-</span>
-<span aria-hidden="true" class="plus"></span>
-</button>
-<div class="concept-panel"><div class="panel-inner">
-<div class="concept-content">
+</div><div class="concept-content">
 <div class="concept-divider"></div>
 <p class="concept-logline">After a self-educated English corset maker inspires the American and French Revolutions with a series of world-changing ideas, his uncompromising belief in universal human rights turns yesterday's hero into today's traitor, leaving the father of modern democracy exiled by every nation he helped transform.</p>
-</div>
-</div></div>
-</article>
-<article class="concept">
-<button aria-expanded="false" class="concept-toggle" type="button">
-<span class="concept-heading">
+</div></div></article>
+<article class="concept"><div class="concept-static"><div class="concept-heading-static">
 <span class="concept-title">Beneath the Surface</span>
 <span class="concept-tease">Who traded our wants for our needs?</span>
-</span>
-<span aria-hidden="true" class="plus"></span>
-</button>
-<div class="concept-panel"><div class="panel-inner">
-<div class="concept-content">
+</div><div class="concept-content">
 <div class="concept-divider"></div>
 <p class="concept-logline">The untold story of Edward Bernays, Sigmund Freud's nephew, whose revolutionary application of psychology to advertising and politics replaced need with hidden desire, creating the modern consumer, toppling governments, and opening a Pandora's box of mass persuasion that transformed an ordinary publicist into the unseen architect of the modern world.</p>
-</div>
-</div></div>
-</article>
+</div></div></article>
 </div>
 </div></div>
 </article><article class="genre">
-<button aria-expanded="false" class="genre-toggle" type="button">
+<button aria-expanded="false" class="genre-button" type="button">
 <span>
 <span class="genre-name">Comedy / Horror Features</span>
 <span class="genre-meta">3 concepts</span>
@@ -258,58 +273,32 @@
 </button>
 <div class="genre-panel"><div class="panel-inner">
 <div class="concept-list">
-<article class="concept">
-<button aria-expanded="false" class="concept-toggle" type="button">
-<span class="concept-heading">
+<article class="concept"><div class="concept-static"><div class="concept-heading-static">
 <span class="concept-title">Invasion of the Basic Bitch Body Snatchers</span>
 <span class="concept-tease">Original thought is humanity’s last line of defense.</span>
-</span>
-<span aria-hidden="true" class="plus"></span>
-</button>
-<div class="concept-panel"><div class="panel-inner">
-<div class="concept-content">
+</div><div class="concept-content">
 <div class="concept-divider"></div>
 <p class="concept-logline">When an offbeat painter discovers that painfully ordinary people are actually body-snatching creatures who use excruciatingly dull small talk to blend into society, he must expose the impostors that have infiltrated his artists' retreat before they assimilate the last people on Earth with an original thought.</p>
-</div>
-</div></div>
-</article>
-<article class="concept">
-<button aria-expanded="false" class="concept-toggle" type="button">
-<span class="concept-heading">
+</div></div></article>
+<article class="concept"><div class="concept-static"><div class="concept-heading-static">
 <span class="concept-title">Red Christmas</span>
 <span class="concept-tease">Santa finally snaps.</span>
-</span>
-<span aria-hidden="true" class="plus"></span>
-</button>
-<div class="concept-panel"><div class="panel-inner">
-<div class="concept-content">
+</div><div class="concept-content">
 <div class="concept-divider"></div>
 <p class="concept-logline">After centuries of bearing the burden of humanity's darkest secrets, Santa Claus finally snaps and embarks on a bloody crusade to purge the world of its naughty—turning Christmas into the deadliest night of the year.</p>
 <p class="concept-quote">“He knows if you’ve been bad or good… and he’s fucking had enough.”</p>
-</div>
-</div></div>
-</article>
-<article class="concept">
-<button aria-expanded="false" class="concept-toggle" type="button">
-<span class="concept-heading">
+</div></div></article>
+<article class="concept"><div class="concept-static"><div class="concept-heading-static">
 <span class="concept-title">See No Evil</span>
 <span class="concept-tease">Hearing his greatest mistake getting closer.</span>
-</span>
-<span aria-hidden="true" class="plus"></span>
-</button>
-<div class="concept-panel"><div class="panel-inner">
-<div class="concept-content">
+</div><div class="concept-content">
 <div class="concept-divider"></div>
 <p class="concept-logline">When a purist painter is blinded in an accident, he secludes himself in an abandoned Buddhist sanctuary to master life through his other senses. But when the embittered former protégé whose career he destroyed tracks him down, he must use everything he's learned to survive an enemy he can no longer see.</p>
-</div>
-</div></div>
-</article>
-
-
+</div></div></article>
 </div>
 </div></div>
 </article><article class="genre">
-<button aria-expanded="false" class="genre-toggle" type="button">
+<button aria-expanded="false" class="genre-button" type="button">
 <span>
 <span class="genre-name">Unscripted Series</span>
 <span class="genre-meta">3 concepts</span>
@@ -318,61 +307,62 @@
 </button>
 <div class="genre-panel"><div class="panel-inner">
 <div class="concept-list">
-<article class="concept">
-<button aria-expanded="false" class="concept-toggle" type="button">
-<span class="concept-heading">
+<article class="concept"><div class="concept-static"><div class="concept-heading-static">
 <span class="concept-title">Ultimate Survivalist</span>
 <span class="concept-tease">Every alliance has its expiration date.</span>
-</span>
-<span aria-hidden="true" class="plus"></span>
-</button>
-<div class="concept-panel"><div class="panel-inner">
-<div class="concept-content">
+</div><div class="concept-content">
 <div class="concept-divider"></div>
 <p class="concept-logline">Ten elite survivalists are dropped into the wilderness with one randomly assigned survival item each, forcing them into uneasy alliances for food, fire, and shelter—even though every alliance must eventually be abandoned if they're to become the last survivalist standing.</p>
-</div>
-</div></div>
-</article>
-<article class="concept">
-<button aria-expanded="false" class="concept-toggle" type="button">
-<span class="concept-heading">
+</div></div></article>
+<article class="concept"><div class="concept-static"><div class="concept-heading-static">
 <span class="concept-title">He’s the Boss</span>
 <span class="concept-tease">The toughest TV exec is seven years old.</span>
-</span>
-<span aria-hidden="true" class="plus"></span>
-</button>
-<div class="concept-panel"><div class="panel-inner">
-<div class="concept-content">
+</div><div class="concept-content">
 <div class="concept-divider"></div>
 <p class="concept-logline">A comedy team is tasked with creating a television pilot from scratch, but there's one catch: their executive producer is seven years old and has final say over every step of the process. From the script and casting to set design and the final edit, every decision must be greenlit by their young boss—and every absurd note must be incorporated.</p>
-</div>
-</div></div>
-</article>
-<article class="concept">
-<button aria-expanded="false" class="concept-toggle" type="button">
-<span class="concept-heading">
+</div></div></article>
+<article class="concept"><div class="concept-static"><div class="concept-heading-static">
 <span class="concept-title">I’m with Stupid</span>
 <span class="concept-tease">Every expert starts as a complete idiot.</span>
-</span>
-<span aria-hidden="true" class="plus"></span>
-</button>
-<div class="concept-panel"><div class="panel-inner">
-<div class="concept-content">
+</div><div class="concept-content">
 <div class="concept-divider"></div>
 <p class="concept-logline">A quick-witted but hopelessly unqualified comedian immerses himself in some of the world's toughest jobs, cultures, and ways of life, where he must do everything himself—with guidance, but no help. Whether he's surviving in the wilderness, enduring military boot camp, living with an Indigenous community, or training like an astronaut, he'll gripe, panic, embarrass himself, and occasionally succeed while gaining a newfound respect for people living lives completely unlike his own.</p>
+</div></div></article>
 </div>
 </div></div>
 </article>
-</div>
-</div></div>
-</article>
-  </section>
-  <a class="next-project" href="produced-work.html">
-    <div><span>Continue Reading</span><strong>Selected Produced Work</strong></div><div class="arrow">→</div>
-  </a>
+</section>
+<a class="next-project" href="produced-work.html">
+<div><span>Continue Reading</span><strong>Selected Produced Work</strong></div><div class="arrow">→</div>
+</a>
 </main>
-
 <footer><span>David Wiswell · Writer / Creator</span><span>São Paulo</span></footer>
 <script src="script.js"></script>
-</body>
+<script id="selected-concepts-accordion">
+(() => {
+  const buttons = Array.from(document.querySelectorAll('.genre-button'));
+
+  const closeGenre = (genre) => {
+    genre.classList.remove('open');
+    const button = genre.querySelector(':scope > .genre-button');
+    if (button) button.setAttribute('aria-expanded', 'false');
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const genre = button.closest('.genre');
+      if (!genre) return;
+
+      const wasOpen = genre.classList.contains('open');
+
+      if (wasOpen) {
+        closeGenre(genre);
+      } else {
+        genre.classList.add('open');
+        button.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+})();
+</script></body>
 </html>
